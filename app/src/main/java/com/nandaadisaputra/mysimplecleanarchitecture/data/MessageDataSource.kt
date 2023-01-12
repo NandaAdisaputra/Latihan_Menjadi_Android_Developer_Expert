@@ -3,5 +3,6 @@ package com.nandaadisaputra.mysimplecleanarchitecture.data
 import com.nandaadisaputra.mysimplecleanarchitecture.domain.MessageEntity
 
 class MessageDataSource : IMessageDataSource {
-    override fun getMessageFromSource(name: String) = MessageEntity("Hello $name! Welcome to Clean Architecture")
+    override fun getMessageFromSource(name: String) =
+        MessageEntity("Hello $name! Welcome to Clean Architecture")
 }

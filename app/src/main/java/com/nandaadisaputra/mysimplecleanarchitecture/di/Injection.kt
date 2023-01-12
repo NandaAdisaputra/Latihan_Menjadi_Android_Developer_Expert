@@ -6,19 +6,26 @@ import com.nandaadisaputra.mysimplecleanarchitecture.data.MessageRepository
 import com.nandaadisaputra.mysimplecleanarchitecture.domain.IMessageRepository
 import com.nandaadisaputra.mysimplecleanarchitecture.domain.MessageInteractor
 import com.nandaadisaputra.mysimplecleanarchitecture.domain.MessageUseCase
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-object Injection {
+@InstallIn(SingletonComponent::class)
+@Module
+class Injection {
+    @Provides
     fun provideUseCase(): MessageUseCase {
         val messageRepository = provideRepository()
         return MessageInteractor(messageRepository)
     }
-
-    private fun provideRepository(): IMessageRepository {
+    @Provides
+    fun provideRepository(): IMessageRepository {
         val messageDataSource = provideDataSource()
         return MessageRepository(messageDataSource)
     }
-
-    private fun provideDataSource(): IMessageDataSource {
+    @Provides
+    fun provideDataSource(): IMessageDataSource {
         return MessageDataSource()
     }
 }
